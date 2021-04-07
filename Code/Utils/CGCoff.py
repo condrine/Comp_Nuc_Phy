@@ -23,7 +23,7 @@ def isTriangle(a, b, c):
 def isZero(a, b):
 
   # check condition
-  if (a*b == 0):
+  if (a == 0 and b == 0):
     return True
 
   return False
@@ -33,11 +33,15 @@ def CGCoff(j1, j2, j, m1, m2, m):
 
   if (m1 + m2 == m) and isTriangle(j1, j2, j):  # checks triangular condition
 
-    if isZero(m1, m2) or isZero(j1, j2): return 1  # checks zero condition
+    if isZero(m1, j1) and isZero(m2, j2): return 1  # checks zero condition
 
     # Calculation of first two terms of CG coffs
-    term1 = (2*j + 1)*Factorial(int(j1+j2-j))*Factorial(int(j+j1-j2))*Factorial(int(j+j2-j1))/Factorial(int(j1+j2+j+1))
-    term2 = Factorial(int(j1+m1))*Factorial(int(j1-m1))*Factorial(int(j2+m2))*Factorial(int(j2-m2))*Factorial(int(j+m))*Factorial(int(j-m))
+    term1 = (2*j + 1)*Factorial(int(j1+j2-j))*Factorial(int(j+j1-j2))\
+      *Factorial(int(j+j2-j1))/Factorial(int(j1+j2+j+1))
+
+    term2 = Factorial(int(j1+m1))*Factorial(int(j1-m1))*Factorial(int(j2+m2))\
+      *Factorial(int(j2-m2))*Factorial(int(j+m))*Factorial(int(j-m))
+
     term3 = 0
 
     # Calculation of the last term of CG coffs
@@ -56,13 +60,17 @@ def CGCoff(j1, j2, j, m1, m2, m):
     # loop for term3 calculation
     for v in range(int(minV), int(maxV) + 1):
 
-      num = (-1 if v%2 != 0 else 1)/Factorial(int(v))
-      den = Factorial(int(termList[0] - v))*Factorial(int(termList[1] - v))*Factorial(int(termList[2] - v))*Factorial(int(v - termList[3]))*Factorial(int(v - termList[4]))
+      num = (-1 if v%2 != 0 else 1)/Factorial(int(v)) # numerator
+
+      den = Factorial(int(termList[0] - v))\
+        *Factorial(int(termList[1] - v))\
+        *Factorial(int(termList[2] - v))\
+        *Factorial(int(v - termList[3]))\
+        *Factorial(int(v - termList[4]))              # denominator
+
       term3 += num/den
 
     coff = math.sqrt(term1)*math.sqrt(term2)*term3
     return coff # final result
 
   return 0
-
-print(CGCoff(2, 2, 0, 1, -1, 0))

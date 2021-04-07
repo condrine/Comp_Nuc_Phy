@@ -6,6 +6,7 @@
 #                                       #
 # # # # # # # # # # # # # # # # # # # # # 
 
+# Function for calculating integral using Simpson's rule
 def SimpsonI(F, h):
 
     I = F[0] + F[len(F) - 1]

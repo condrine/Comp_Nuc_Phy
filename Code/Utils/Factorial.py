@@ -9,6 +9,7 @@
 # Array for accessing already stored factorials for optimisation 
 factArray = [1, 1, 2]
 
+# Function for calculating factorial of a number
 def Factorial(n):
 
   if (len(factArray) <= n):
