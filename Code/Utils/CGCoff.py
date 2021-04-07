@@ -7,7 +7,7 @@
 #                                                         #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-from Factorial import Factorial
+from Utils.Factorial import Factorial
 import math
 
 # Function for checking triangular condition on j1, j2 and j
